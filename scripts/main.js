@@ -1,4 +1,4 @@
-//window.addEventListener("resize", setDimensions);
+window.addEventListener("resize", setDimensions);
 // Colors 
 const COLOR_BACKGROUND = "black";
 const COLOR_WALL = "grey";
