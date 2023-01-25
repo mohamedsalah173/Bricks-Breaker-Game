@@ -1,97 +1,36 @@
-var paddle , ball ;
-newGame();
-gameLoop();
-
-
-
-function newGame(){
+// for resposive
+window.addEventListener("resize", newGame);
+// game variables
+var ball, paddle;
+function newGame() {
+    setDimensions();
     paddle = new Paddle();
-    ball= new Ball();
+    ball = new Ball();
 }
+
 function outOfBounds() {
     // TODO out of bounds
     newGame();
 }
+
 function gameLoop() {
-    // updates functions
+    // update
     updatePaddle();
     updateBall();
-    // draw function 
+
+    // draw
     drawBackground();
-    drawBoarders();
+    drawWalls();
     drawPaddle();
     drawBall();
-    // call the next loop (recursion)
+
+    // call the next loop
     requestAnimationFrame(gameLoop);
 }
-
-
-
-
-
-
-
-
-
-/* 
-var paddle , ball ;
-
-
-
-
-function newGame(){
-    paddle = new Paddle();
-   //ball= new Ball();
+function start() {
+    newGame();
+    gameLoop();
 }
 
 
-newGame();
-
-
-//setup the game loop
-//var timeDelta, timeLast;
-//  requestAnimationFrame(gameLoop);
-
-function gameLoop() {
-   /*  //timeNow
-    if (!timeLast) {
-        timeLast = timeNow;
-    }
-    // Calculate the time difference
-    timeDelta = (timeNow - timeLast) / 1000;// seconds
-    timeLast = timeNow; 
-
-    // updates functions
-    updatePaddle();
- 
-    // draw function 
-    drawBackground();
-    drawBoarders();
-    drawPaddle();
-    drawBall();
-    // call the next loop (recursion)
-    requestAnimationFrame(gameLoop);
-}
-
-
-
-gameLoop();
-function drawBackground() {
-    ctx.fillStyle = COLOR_BACKGROUND;
-    ctx.fillRect(0, 0, canv.width, canv.height);
-}
-
-
-function drawBoarders() {
-    let halfBoarder = BOARDER / 2;
-    ctx.strokeStyle = COLOR_BOARDERS;
-    ctx.beginPath();
-    ctx.moveTo(halfBoarder, GAME_HEIGHT);
-    ctx.lineTo(halfBoarder, halfBoarder); // top
-    ctx.lineTo(GAME_WIDTH - halfBoarder, halfBoarder); // left
-    ctx.lineTo(GAME_WIDTH - halfBoarder, GAME_HEIGHT); // right
-    ctx.stroke();
-    ctx.closePath();
-} */
-
-
+start();

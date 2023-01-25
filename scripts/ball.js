@@ -1,13 +1,11 @@
-const COLOR_BALL = "white";
-const BALL_SPD = 0.01;
-
-var BALL_RADIUS = 0.5;
+const BALL_SPD = 0.01; // starting ball speed as a fraction of screen height per second
 const BALL_SPIN = 0.5; // ball deflection off the paddle (0 = no spin, 1 = high spin)
+const COLOR_BALL = "white";
 function Ball() {
-    this.radius = BALL_RADIUS * BOARDER;
+    this.radius = wall * 0.75;
     this.x = paddle.x;
-    this.y = paddle.y - paddle.h - this.radius;
-    this.spd = BALL_SPD * GAME_HEIGHT;
+    this.y = paddle.y - paddle.h / 2 - this.radius;
+    this.spd = BALL_SPD * (height > game_Width ? height : game_Width);
     this.dx = 0;
     this.dy = 0;
 }
@@ -20,56 +18,18 @@ function drawBall() {
     ctx.closePath;
 }
 
+function serve() {
 
-
-function updateBall() {
-    ball.x += ball.dx;
-    ball.y += ball.dy;
-
-    // move the stationary ball with the paddle
-    if (ball.dy == 0) {
-        ball.x = paddle.x;
+    // ball already in motion
+    if (ball.dy != 0) {
+        return false;
     }
 
-
-    // bounce the ball off the walls
-    if (ball.x < BOARDER + ball.radius) {
-        ball.x = BOARDER + ball.radius;
-        ball.dx = -ball.dx;
-    } else if (ball.x > canv.width - BOARDER - ball.radius) {
-        ball.x = canv.width - BOARDER - ball.radius;
-        ball.dx = -ball.dx;
-    } else if (ball.y < BOARDER + ball.radius) {
-        ball.y = BOARDER + ball.radius;
-        ball.dy = -ball.dy;
-    }
-    // bounce off the paddle
-
-    if (ball.y > paddle.y - paddle.h - ball.radius 
-        && ball.y < paddle.y
-        && ball.x > paddle.x - paddle.w /2- ball.radius 
-        && ball.x < paddle.x + paddle.w /2 + ball.radius
-    ) {
-        ball.y = paddle.y - paddle.h  - ball.radius;
-        ball.dy = -ball.dy;
-
-        // modify the angle based off ball spin
-        let angle = Math.atan2(-ball.dy, ball.dx);
-        angle += (Math.random() * Math.PI / 2 - Math.PI / 4) * BALL_SPIN;
-
-
-        applyBallSpeed(angle); 
-    }
-
-
-
-    // handle out of bounds
-    if (ball.y > canv.height) {
-        outOfBounds();
-    }
-
+    // random angle, between 45 and 135 degrees
+    let angle = Math.random() * Math.PI / 2 + Math.PI / 4;
+    applyBallSpeed(angle);
+    return true;
 }
-
 
 function applyBallSpeed(angle) {
 
@@ -85,13 +45,46 @@ function applyBallSpeed(angle) {
     ball.dy = -ball.spd * Math.sin(angle);
 }
 
-
-function serve() {
-    // ball already in motion
-    if (ball.dy != 0) {
-        return;
+function updateBall() {
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+    // move the stationary ball with the paddle
+    if (ball.dy == 0) {
+        ball.x = paddle.x;
     }
-    // random angle, between 45 and 135 degrees
-    let angle = Math.random() * Math.PI / 2 + Math.PI / 4;
-    applyBallSpeed(angle);
-}     
+    // bounce the ball off the walls
+    if (ball.x < wall + ball.radius) {
+        ball.x = wall + ball.radius;
+        ball.dx = -ball.dx;
+    } else if (ball.x > game_Width - wall - ball.radius) {
+        ball.x = game_Width - wall - ball.radius;
+        ball.dx = -ball.dx;
+    } else if (ball.y < wall + ball.radius) {
+        ball.y = wall + ball.radius;
+        ball.dy = -ball.dy;
+    }
+
+    // bounce off the paddle
+    if (ball.y > paddle.y - paddle.h * 0.5 - ball.radius
+        && ball.y < paddle.y
+        && ball.x > paddle.x - paddle.w * 0.5 - ball.radius
+        && ball.x < paddle.x + paddle.w * 0.5 + ball.radius
+    ) {
+        ball.y = paddle.y - paddle.h * 0.5 - ball.radius;
+        ball.dy = -ball.dy;
+
+        // modify the angle based off ball spin
+        let angle = Math.atan2(-ball.dy, ball.dx);
+        angle += (Math.random() * Math.PI / 2 - Math.PI / 4) * BALL_SPIN;
+        applyBallSpeed(angle);
+    }
+
+    // handle out of bounds
+    if (ball.y > height) {
+        outOfBounds();
+    }
+
+
+}
+
+
