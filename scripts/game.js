@@ -15,6 +15,9 @@ function outOfBounds() {
 
 function gameLoop() {
     // update
+    if(!createPattern) {
+        createBricks();
+    }
     updatePaddle();
     updateBall();
 
@@ -23,7 +26,8 @@ function gameLoop() {
     drawWalls();
     drawPaddle();
     drawBall();
-
+    drawBricks()
+    ballBricksCollision ();
     // call the next loop
     requestAnimationFrame(gameLoop);
 }

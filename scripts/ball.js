@@ -86,5 +86,21 @@ function updateBall() {
 
 
 }
+function ballBricksCollision () {
+    for(let row = 0 ; row < brick.rows ; row ++){
+        for(let c = 0 ; c < brick.col ; c ++){
+            let bk = brickArr[row][c];
+            if(bk.status) {
+                if(bk.x < ball.x+ball.radius  
+                    && bk.x + brick.width   > ball.x - ball.radius
+                    && ball.y + ball.radius > bk.y
+                    && ball.y - ball.radius < bk.y + brick.height) {
+                        bk.status = false;
+                        ball.dy = -ball.dy
+                    }
+            }
+        }
+    }
+}
 
 
