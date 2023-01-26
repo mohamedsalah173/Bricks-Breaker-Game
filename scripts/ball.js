@@ -93,6 +93,7 @@ function ballBricksCollision() {
                     && bk.x + Brick.width > ball.x - ball.radius
                     && ball.y + ball.radius > bk.y
                     && ball.y - ball.radius < bk.y + Brick.height) {
+                    if(bk.status>0)
                     score += bk.status; //if lives = 0 set the score back to 0
                     //high score
                     if (score > highScore) {
@@ -112,6 +113,9 @@ function ballBricksCollision() {
                     } else if (bk.status === 0) {
                         bk.status === false
                         bk.status--;
+                    }
+                    else if(bk.status === -1){
+                        ball.dy = -ball.dy
                     }
                 }
             }

@@ -17,8 +17,11 @@ document.addEventListener("keydown",(e)=>{
 // }
 
 // game variables
+
+var level=1;
 var ball, paddle;
 function newGame() {
+    // level=1;
     setDimensions();
     paddle = new Paddle();
     ball = new Ball();
@@ -33,7 +36,35 @@ function outOfBounds() {
 function gameLoop() {
     // update
     if(!createPattern) {
-        createBricks();
+        switch (level) {
+            case 1:
+                createBricks(level1);
+                break;
+            case 2:
+                newGame();
+                createBricks(level2);
+                // setTimeout(()=>{
+                    
+                //     ctx.fillStyle= "red";
+                //     ctx.font = "italic bold 35pt Tahoma";
+                //     ctx.fillText("UP LEVEL",30,80);
+                //     },10000);
+                break;
+            case 3:
+                newGame();
+                createBricks(level3);
+                break;
+            default:
+                console.log("you won ");
+                
+                break;
+        }
+        
+    }
+
+    if(switchLevel){
+        level++;
+        createPattern=false;
     }
     if(isPause===true) {
 

@@ -1,8 +1,31 @@
 
 let brickArr = [];
-
+var switchLevel=false;
 var createPattern = false;
 
+
+const level1 = [
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+    , [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+    , [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+    , [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]];
+
+const level2 = [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+[2, 2, 0, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 2, 2]
+    , [2, 2, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 2, 2]
+    , [2, 2, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 2, 2],
+[2, 2, 0, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 2, 2]
+    , [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+];
+
+const level3 = [[0, 3, 3, 0, 0, 0, -1, 3, 3, 0, 0, 0, -1, 3, 0, 0],
+[0, 0, 0, 3, 3, 0, 0, 0, 0, 3, 3, 0, 0, 0, 2, 0]
+    , [0, 0, 0, 0, -1, 2, 0, 0, 0, 0, -1, 2, 0, 0, -1, 2]
+    , [0, 0, 0, 0, -1, 2, 0, 0, 0, 0, -1, 2, 0, 0, -1, 2],
+[0, 0, 0, 3, 3, 0, 0, 0, 0, 3, 3, 0, 0, 0, 2, 0]
+    , [0, 3, 3, 0, 0, 0, -1, 3, 3, 0, 0, 0, -1, 3, 0, 0]];
 class Brick {
     static cols = 16;
     static rows = 6;
@@ -19,35 +42,44 @@ class Brick {
     }
 }
 
-function createBricks() {
-    for (let row = 0; row < Brick.rows; row++) {
+function createBricks(arr) {
+    for (let row = 0; row < arr.length; row++) {
         brickArr[row] = [];
-        for (let c = 0; c < Brick.cols; c++) {
+        for (let c = 0; c < arr[row].length; c++) {
             let x = (c * (Brick.offsetLeft + Brick.width) + Brick.offsetLeft);
             let y = ((row * (Brick.offsetTop + Brick.height) + Brick.offsetLeft) + Brick.marginTop);
-            let status = Math.ceil(Math.random() * 3);
-            brickArr[row][c] = new Brick(x, y, status);
+            // let status = Math.ceil(Math.random() * 3);
+            brickArr[row][c] = new Brick(x, y, arr[row][c]);
         }
     }
     for (let i = 0; i < 20; i++) { // create 4 powers random
         brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'life'
         brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'paddle'
     }
+    switchLevel=false;
     createPattern = true
 }
 
 function drawBricks() {
+    switchLevel=true;
     for (let row = 0; row < Brick.rows; row++) {
         for (let c = 0; c < Brick.cols; c++) {
             let bk = brickArr[row][c];
             if (brickArr[row][c].status === 1) {
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
+                switchLevel=false;
             } else if (brickArr[row][c].status === 2) {
                 ctx.fillStyle = '#33eecc';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
+                switchLevel=false;
             } else if (brickArr[row][c].status === 3) {
                 ctx.fillStyle = '#3322cc';
+                ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
+                switchLevel=false;
+            }
+            else if(brickArr[row][c].status === -1){
+                ctx.fillStyle = '#808080';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
             }
         }
