@@ -101,9 +101,9 @@ function ballBricksCollision() {
                     }
                     document.querySelector('.score span').innerHTML = score
 
-                    if (bk.power) {
+                    if (bk.power!=='') {
                         createPower(bk);
-                        bk.power = false;
+                        bk.power = '';
                     }
 
                     if (bk.status === 3 || bk.status === 2 || bk.status === 1) {
