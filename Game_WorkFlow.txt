@@ -40,10 +40,13 @@ osama
 
 omar & salah :
 - Ball & Bricks Collision
-- ball - score - lives
+- ball 
 - Ball & Wall Collision
 - Paddle & Ball Collision 
 - paddle
+- score 
+- lives
+
 
 
 somaya :
