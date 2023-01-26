@@ -1,4 +1,4 @@
-const BALL_SPD = 0.01; // starting ball speed as a fraction of screen height per second
+const BALL_SPD = 0.006; // starting ball speed as a fraction of screen height per second
 const BALL_SPIN = 0.5; // ball deflection off the paddle (0 = no spin, 1 = high spin)
 const COLOR_BALL = "white";
 function Ball() {
@@ -44,7 +44,6 @@ function applyBallSpeed(angle) {
     ball.dx = ball.spd * Math.cos(angle);
     ball.dy = -ball.spd * Math.sin(angle);
 }
-
 function updateBall() {
     ball.x += ball.dx;
     ball.y += ball.dy;
@@ -83,21 +82,34 @@ function updateBall() {
     if (ball.y > height) {
         outOfBounds();
     }
-
-
 }
-function ballBricksCollision () {
-    for(let row = 0 ; row < brick.rows ; row ++){
-        for(let c = 0 ; c < brick.col ; c ++){
+var score = 0;
+function ballBricksCollision() {
+    for (let row = 0; row < Brick.rows; row++) {
+        for (let c = 0; c < Brick.cols; c++) {
             let bk = brickArr[row][c];
-            if(bk.status) {
-                if(bk.x < ball.x+ball.radius  
-                    && bk.x + brick.width   > ball.x - ball.radius
+            if (bk.status) {
+                if (bk.x < ball.x + ball.radius
+                    && bk.x + Brick.width > ball.x - ball.radius
                     && ball.y + ball.radius > bk.y
-                    && ball.y - ball.radius < bk.y + brick.height) {
-                        bk.status = false;
-                        ball.dy = -ball.dy
+                    && ball.y - ball.radius < bk.y + Brick.height) {
+                    score += bk.status; //if lives = 0 set the score back to 0
+                    console.log(score);
+                    document.querySelector('.score span').innerHTML = score
+
+                    if (bk.power) {
+                            createPower(bk);
+                            bk.power=false;
                     }
+                    
+                    if (bk.status === 3 || bk.status === 2 || bk.status === 1) {
+                        ball.dy = -ball.dy
+                        bk.status--;
+                    } else if (bk.status === 0) {
+                        bk.status === false
+                        bk.status--;
+                    }
+                }
             }
         }
     }

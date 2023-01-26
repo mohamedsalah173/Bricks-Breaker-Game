@@ -9,7 +9,7 @@ function newGame() {
 }
 
 function outOfBounds() {
-    // TODO out of bounds
+    // TODO out of boundsz
     newGame();
 }
 
@@ -28,6 +28,8 @@ function gameLoop() {
     drawBall();
     drawBricks()
     ballBricksCollision ();
+    drawPower()
+
     // call the next loop
     requestAnimationFrame(gameLoop);
 }

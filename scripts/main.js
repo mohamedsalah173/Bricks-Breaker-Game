@@ -1,3 +1,11 @@
+
+var section = document.createElement('section')
+section.classList.add('dashboard')
+section.innerHTML = `<div class="score">score <span>0</span></div>
+<div class="lives">lives <span>3</span></div>
+<div class="high-score">high score</div>`
+document.body.appendChild(section)
+
 window.addEventListener("resize", setDimensions);
 // Colors 
 const COLOR_BACKGROUND = "black";
@@ -9,11 +17,18 @@ var canv = document.createElement("canvas");
 document.body.appendChild(canv);
 //setup the context
 var ctx = canv.getContext("2d");
+document.querySelector('canvas').style.display = 'none'
+
+document.getElementById('start').addEventListener('click', () => {
+    document.getElementById('menu').style.display = 'none';
+    section.style.visibility = 'visible'
+    document.querySelector('canvas').style.display = 'block'
+})
 // dimensions
 var height, game_Width, wall;
 // set game dimensions
 function setDimensions() {
-    height = window.innerHeight;
+    height = window.innerHeight - section.offsetHeight;
     game_Width = window.innerWidth;
     wall = WALL_F * (height < game_Width ? height : game_Width);
     canv.width = game_Width;

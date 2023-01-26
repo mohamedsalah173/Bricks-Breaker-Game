@@ -9,7 +9,7 @@ canv.addEventListener("touchstart", touchStart);
 //-----------------------------------------------------
 const COLOR_PADDLE = "white";
 const PADDLE_SPD = 0.009; // fraction of screen width per second
-const PADDLE_W = 0.1; // paddle width as a fraction of screen width
+let PADDLE_W = 0.1; // paddle width as a fraction of screen width
 
 // definitions
 const Direction = {
@@ -112,7 +112,3 @@ function updatePaddle() {
         paddle.x = game_Width - wall - paddle.w / 2;
     }
 }
-
-
-
-
