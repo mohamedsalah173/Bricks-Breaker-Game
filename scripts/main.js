@@ -7,7 +7,9 @@ section.innerHTML = `
 <div class="lives">lives <span>3</span></div>
 <div class="high-score">high score <span></span></div>`
 document.body.appendChild(section)
-
+//create audio diff src
+let aud = document.createElement('AUDIO');
+document.body.appendChild(aud);
 window.addEventListener("resize", setDimensions);
 // Colors 
 const COLOR_BACKGROUND = "black";

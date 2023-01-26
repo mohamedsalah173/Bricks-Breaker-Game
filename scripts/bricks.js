@@ -1,6 +1,6 @@
 
 let brickArr = [];
-var switchLevel=false;
+var switchLevel = false;
 var createPattern = false;
 
 
@@ -56,29 +56,29 @@ function createBricks(arr) {
         brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'life'
         brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'paddle'
     }
-    switchLevel=false;
+    switchLevel = false;
     createPattern = true
 }
 
 function drawBricks() {
-    switchLevel=true;
+    switchLevel = true;
     for (let row = 0; row < Brick.rows; row++) {
         for (let c = 0; c < Brick.cols; c++) {
             let bk = brickArr[row][c];
             if (brickArr[row][c].status === 1) {
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
-                switchLevel=false;
+                switchLevel = false;
             } else if (brickArr[row][c].status === 2) {
                 ctx.fillStyle = '#33eecc';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
-                switchLevel=false;
+                switchLevel = false;
             } else if (brickArr[row][c].status === 3) {
                 ctx.fillStyle = '#3322cc';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
-                switchLevel=false;
+                switchLevel = false;
             }
-            else if(brickArr[row][c].status === -1){
+            else if (brickArr[row][c].status === -1) {
                 ctx.fillStyle = '#808080';
                 ctx.fillRect(bk.x, bk.y, Brick.width, Brick.height);
             }
@@ -137,6 +137,8 @@ function catchPower() {
     let end_x = paddle.x + (paddle.w / 2)
     for (let i = 0; i < powers.length; i++) {
         if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y === Math.ceil(paddle.y)) {
+            aud.src = "../media/powerup.m4a";
+            aud.play().catch((err) => { console.log(err); });
             if (powers[i].type === 'paddle') {
                 powerPaddle()
             } else if (powers[i].type === 'life') {
