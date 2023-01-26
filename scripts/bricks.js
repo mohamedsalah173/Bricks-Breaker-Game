@@ -7,7 +7,7 @@ class Brick {
     static cols = 16;
     static rows = 6;
     static marginTop = 30;
-    static width = 60;
+    static width = (canv.width /16) - (wall*2);
     static height = 20;
     static offsetTop = 20;
     static offsetLeft = 30;
@@ -29,19 +29,9 @@ function createBricks() {
             brickArr[row][c] = new Brick(x, y, status);
         }
     }
-    brickArr[5][15].power = true
-    brickArr[5][14].power = true
-    brickArr[5][13].power = true
-    brickArr[5][12].power = true
-    brickArr[5][11].power = true
-    brickArr[5][10].power = true
-    brickArr[5][9].power = true
-    brickArr[5][8].power = true
-    brickArr[5][7].power = true
-    brickArr[5][6].power = true
-    brickArr[5][5].power = true
-    console.log(brickArr);
-
+    for (let i = 0; i < 4; i++) { // create 4 powers random
+        brickArr[Math.floor(Math.random()*6)][Math.floor(Math.random()*16)].power = true        
+    }
     createPattern = true
 }
 
@@ -72,7 +62,7 @@ class Power {
     }
 }
 var power;
-var powers=[]
+var powers = []
 function createPower(brick) {
     power = new Power(brick);
     ctx.beginPath()
@@ -92,7 +82,6 @@ function drawPower() {
         ctx.stroke()
         ctx.closePath()
         catchPower()
-        
     }
 }
 
@@ -103,9 +92,9 @@ function catchPower() {
         if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y === Math.ceil(paddle.y)) {
             powerPaddle()
         }
-        
+
     }
-    
+
 }
 
 function powerPaddle() {
