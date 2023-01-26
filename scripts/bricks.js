@@ -72,34 +72,40 @@ class Power {
     }
 }
 var power;
+var powers=[]
 function createPower(brick) {
     power = new Power(brick);
     ctx.beginPath()
     ctx.fillStyle = '#ff0000';
     ctx.fillRect(power.x, power.y, 10, 5);
     ctx.stroke()
+    powers.push(power)
 }
 
-// createPower();
 
 function drawPower() {
-    if (power) {
-        power.y++;
+    for (let i = 0; i < powers.length; i++) {
+        powers[i].y++;
         ctx.beginPath()
         ctx.fillStyle = '#ff0000';
-        ctx.fillRect(power.x, power.y, 20, 5);
+        ctx.fillRect(powers[i].x, powers[i].y, 20, 5);
         ctx.stroke()
         ctx.closePath()
         catchPower()
+        
     }
 }
 
 function catchPower() {
     let begin_x = paddle.x - (paddle.w / 2)
     let end_x = paddle.x + (paddle.w / 2)
-    if (power.x > begin_x && power.x < end_x && power.y === Math.ceil(paddle.y)) {
-        powerPaddle()
+    for (let i = 0; i < powers.length; i++) {
+        if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y === Math.ceil(paddle.y)) {
+            powerPaddle()
+        }
+        
     }
+    
 }
 
 function powerPaddle() {
