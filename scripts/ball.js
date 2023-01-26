@@ -83,6 +83,7 @@ function updateBall() {
     }
 }
 var score = 0;
+var highScore = score
 function ballBricksCollision() {
     for (let row = 0; row < Brick.rows; row++) {
         for (let c = 0; c < Brick.cols; c++) {
@@ -93,14 +94,18 @@ function ballBricksCollision() {
                     && ball.y + ball.radius > bk.y
                     && ball.y - ball.radius < bk.y + Brick.height) {
                     score += bk.status; //if lives = 0 set the score back to 0
-                    // console.log(score);
+                    //high score
+                    if (score > highScore) {
+                        highScore = score
+                        localStorage.setItem("highScore", highScore)
+                    }
                     document.querySelector('.score span').innerHTML = score
 
                     if (bk.power) {
-                            createPower(bk);
-                            bk.power=false;
+                        createPower(bk);
+                        bk.power = false;
                     }
-                    
+
                     if (bk.status === 3 || bk.status === 2 || bk.status === 1) {
                         ball.dy = -ball.dy
                         bk.status--;
@@ -114,4 +119,4 @@ function ballBricksCollision() {
     }
 }
 
-
+document.querySelector('.high-score span').innerHTML = localStorage.getItem("highScore", highScore)

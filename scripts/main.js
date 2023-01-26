@@ -5,7 +5,7 @@ section.innerHTML = `
 <div class="pause">Esc to pause</div>
 <div class="score">score <span>0</span></div>
 <div class="lives">lives <span>3</span></div>
-<div class="high-score">high score</div>`
+<div class="high-score">high score <span></span></div>`
 document.body.appendChild(section)
 
 window.addEventListener("resize", setDimensions);
