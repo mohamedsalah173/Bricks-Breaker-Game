@@ -39,7 +39,6 @@ function applyBallSpeed(angle) {
     } else if (angle > Math.PI * 5 / 6) {
         angle = Math.PI * 5 / 6;
     }
-
     // update the x and y velocities of the ball
     ball.dx = ball.spd * Math.cos(angle);
     ball.dy = -ball.spd * Math.sin(angle);
@@ -94,7 +93,7 @@ function ballBricksCollision() {
                     && ball.y + ball.radius > bk.y
                     && ball.y - ball.radius < bk.y + Brick.height) {
                     score += bk.status; //if lives = 0 set the score back to 0
-                    console.log(score);
+                    // console.log(score);
                     document.querySelector('.score span').innerHTML = score
 
                     if (bk.power) {

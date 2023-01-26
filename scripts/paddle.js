@@ -34,6 +34,9 @@ function drawPaddle() {
 
 function keyDown(ev) {
     switch (ev.keyCode) {
+        // case 27:
+        //     setFlages();
+        //     break
         case 32: // space bar (serve the ball)
             serve();
             break;

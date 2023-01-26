@@ -1,5 +1,21 @@
 // for resposive
 window.addEventListener("resize", newGame);
+let isPause = true;
+document.addEventListener("keydown",(e)=>{
+    // console.log(e);
+    if(e.key==='Escape') {
+        isPause = isPause === true ? false :true;
+        console.log(isPause);
+    }
+})
+// if(isPause) {
+//     ctx.fillStyle = "white";
+//         ctx.font = "200px Arial";
+//         ctx.fillText("Continue",1 , 1);
+//         ctx.textAlign = "center";
+//         drawPasue();
+// }
+
 // game variables
 var ball, paddle;
 function newGame() {
@@ -13,14 +29,17 @@ function outOfBounds() {
     newGame();
 }
 
+
 function gameLoop() {
     // update
     if(!createPattern) {
         createBricks();
     }
-    updatePaddle();
-    updateBall();
+    if(isPause===true) {
 
+        updatePaddle();
+        updateBall();
+    }
     // draw
     drawBackground();
     drawWalls();
@@ -29,7 +48,6 @@ function gameLoop() {
     drawBricks()
     ballBricksCollision ();
     drawPower()
-
     // call the next loop
     requestAnimationFrame(gameLoop);
 }

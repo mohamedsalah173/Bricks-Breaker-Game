@@ -1,7 +1,9 @@
 
 var section = document.createElement('section')
 section.classList.add('dashboard')
-section.innerHTML = `<div class="score">score <span>0</span></div>
+section.innerHTML = `
+<div class="pause">Esc to pause</div>
+<div class="score">score <span>0</span></div>
 <div class="lives">lives <span>3</span></div>
 <div class="high-score">high score</div>`
 document.body.appendChild(section)
