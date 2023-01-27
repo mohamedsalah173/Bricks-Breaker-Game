@@ -52,7 +52,8 @@ function createBricks(arr) {
             brickArr[row][c] = new Brick(x, y, arr[row][c]);
         }
     }
-    for (let i = 0; i < 20; i++) { // create 4 powers random
+
+    for (let i = 0; i < 20; i++) { //create powers random
         brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'life'
         brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'paddle'
     }
@@ -93,6 +94,7 @@ class Power {
         this.x = brick.x + (Brick.width / 2);
         this.y = brick.y + (Brick.height / 2);
         this.type = brick.power
+        this.isCaught = false
     }
 }
 var power;
@@ -114,7 +116,10 @@ function createPower(brick) {
 
 function drawPower() {
     for (let i = 0; i < powers.length; i++) {
-        if (powers[i].y < canv.height + 100 && isPause) {
+        if (powers[i].isCaught && powers[i].y < canv.height) {
+            powers[i].y += 500;
+        }
+        if (powers[i].y < canv.height + 100 && isPause && !powers[i].isCaught) {
             powers[i].y++;
         }
         switch (powers[i].type) {
@@ -131,20 +136,20 @@ function drawPower() {
         catchPower()
     }
 }
-
 function catchPower() {
     let begin_x = paddle.x - (paddle.w / 2)
     let end_x = paddle.x + (paddle.w / 2)
-    for (let i = 0; i < powers.length; i++) {
-        if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y === Math.ceil(paddle.y)) {
+    for (var i = 0; i < powers.length; i++) {
+        if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y + 10 === Math.ceil(paddle.y) && !powers[i].isCaught) {
             aud.src = "../media/powerup.m4a";
             aud.play().catch((err) => { console.log(err); });
+            powers[i].isCaught = true;
             if (powers[i].type === 'paddle') {
                 powerPaddle()
             } else if (powers[i].type === 'life') {
                 powerLife()
             }
-        }
+        }   
     }
 }
 function powerPaddle() {
@@ -152,7 +157,9 @@ function powerPaddle() {
     setTimeout(() => { paddle.w = 0.1 * game_Width }, 10000)
 }
 function powerLife() {
-    console.log('life'); //lives++
+    console.log('life');
+    lives++;
+    document.querySelector('.lives span').innerHTML = lives;
 }
 
 function drawLine(power) {
@@ -165,8 +172,8 @@ function drawHeart(power) {
 
     var x = power.x;
     var y = power.y;
-    var width = 30;
-    var height = 30;
+    var width = 20;
+    var height = 20;
 
     ctx.save();
     ctx.beginPath();
@@ -201,7 +208,7 @@ function drawHeart(power) {
     );
 
     ctx.closePath();
-    ctx.fillStyle = "#ff0000";
+    ctx.fillStyle = '#ff0000';
     ctx.fill();
     ctx.restore();
 

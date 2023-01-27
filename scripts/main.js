@@ -3,6 +3,7 @@ var section = document.createElement('section')
 section.classList.add('dashboard')
 section.innerHTML = `
 <div class="pause">Esc to pause</div>
+<div class="level">Level <span></span></div>
 <div class="score">score <span>0</span></div>
 <div class="lives">lives <span>3</span></div>
 <div class="high-score">high score <span></span></div>`
@@ -10,12 +11,14 @@ document.body.appendChild(section)
 //create audio diff src
 let aud = document.createElement('AUDIO');
 document.body.appendChild(aud);
+
 window.addEventListener("resize", setDimensions);
 // Colors 
 const COLOR_BACKGROUND = "black";
 const COLOR_WALL = "grey";
 //Game Parameters
 const WALL_F = 0.02; // wall/ball/paddle size as a fraction of the shortest screen dimension
+
 //setup the game canvas
 var canv = document.createElement("canvas");
 document.body.appendChild(canv);
@@ -57,3 +60,11 @@ function drawWalls() {
 }
 
 setDimensions();
+
+document.getElementById('restart-level').addEventListener('click',()=>{
+    ctx.clearRect(0,0 ,canv.width,canv.height)
+    document.getElementById('game-over').style.display = 'none';
+    createPattern = false;
+    lives=3;
+    newGame();
+})

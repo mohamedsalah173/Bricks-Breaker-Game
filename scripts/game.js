@@ -19,6 +19,10 @@ document.addEventListener("keydown",(e)=>{
 // game variables
 
 var level=1;
+
+//display level
+document.querySelector('.level span').innerHTML = level;
+
 var ball, paddle;
 function newGame() {
     // level=1;
@@ -27,9 +31,17 @@ function newGame() {
     ball = new Ball();
 }
 
+var lives = 3;
 function outOfBounds() {
-    // TODO out of boundsz
+    // TODO out of bounds
+    lives--;
+    document.querySelector('.lives span').innerHTML = lives
     newGame();
+    if (lives === 0 ) {
+        document.getElementById('game-over').style.display='flex';
+        score=0;
+        document.querySelector('.score span').innerHTML = score
+    }
 }
 
 
@@ -64,6 +76,8 @@ function gameLoop() {
 
     if(switchLevel){
         level++;
+        //display level
+        document.querySelector('.level span').innerHTML = level;
         createPattern=false;
     }
     if(isPause===true) {
