@@ -77,6 +77,7 @@ function gameLoop() {
 
     if(switchLevel){
         level++;
+        powers = []
         //display level
         document.querySelector('.level span').innerHTML = level;
         createPattern=false;
