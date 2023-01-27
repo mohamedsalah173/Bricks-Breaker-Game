@@ -7,7 +7,7 @@ document.addEventListener("keydown",(e)=>{
         isPause = isPause === true ? false :true;
         console.log(isPause);
     }
-})
+})  
 // if(isPause) {
 //     ctx.fillStyle = "white";
 //         ctx.font = "200px Arial";

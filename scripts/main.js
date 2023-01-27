@@ -26,11 +26,6 @@ document.body.appendChild(canv);
 var ctx = canv.getContext("2d");
 document.querySelector('canvas').style.display = 'none'
 
-document.getElementById('start').addEventListener('click', () => {
-    document.getElementById('menu').style.display = 'none';
-    section.style.visibility = 'visible'
-    document.querySelector('canvas').style.display = 'block'
-})
 // dimensions
 var height, game_Width, wall;
 // set game dimensions
@@ -61,13 +56,33 @@ function drawWalls() {
 
 setDimensions();
 
-document.getElementById('restart-level').addEventListener('click',()=>{
-    ctx.clearRect(0,0 ,canv.width,canv.height)
+document.getElementById('start').addEventListener('click', () => {
+    document.getElementById('menu').style.display = 'none';
+    section.style.visibility = 'visible'
+    document.querySelector('canvas').style.display = 'block'
+})
+
+document.getElementById('restart-level').addEventListener('click', () => {
     document.getElementById('game-over').style.display = 'none';
     createPattern = false;
-    lives=3;
-    isPause=true
-    powers=[]
+    lives = 3;
+    isPause = true
+    powers = []
     document.querySelector('.lives span').innerHTML = lives
     newGame();
+})
+document.getElementById('return-menu').addEventListener('click', () => {
+
+    createPattern = false;
+    lives = 3;
+    level = 1;
+    document.getElementById('game-over').style.display = 'none';
+    document.getElementById('menu').style.display = 'flex';
+    section.style.visibility = 'hidden'
+    document.querySelector('canvas').style.display = 'none'
+    document.querySelector('.level span').innerHTML = level;
+
+    isPause = true
+    powers = []
+    document.querySelector('.lives span').innerHTML = lives
 })
