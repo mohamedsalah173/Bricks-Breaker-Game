@@ -3,6 +3,7 @@ var section = document.createElement('section')
 section.classList.add('dashboard')
 section.innerHTML = `
 <div class="pause">Esc to pause</div>
+<div class="sound"><i id="icon" class='fa fa-music'></i></div>
 <div class="level">Level <span></span></div>
 <div class="score">score <span>0</span></div>
 <div class="lives">lives <span>3</span></div>

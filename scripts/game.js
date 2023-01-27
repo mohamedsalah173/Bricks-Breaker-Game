@@ -48,6 +48,7 @@ function outOfBounds() {
 
 function gameLoop() {
     // update
+    // makeSomeNoise();
     if(!createPattern) {
         switch (level) {
             case 1:
