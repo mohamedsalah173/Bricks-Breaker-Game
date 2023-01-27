@@ -54,17 +54,17 @@ function updateBall() {
     if (ball.x < wall + ball.radius) {
         ball.x = wall + ball.radius;
         ball.dx = -ball.dx;
-        aud.src = "../media/wall.m4a";
+        aud.src = "media/wall.m4a";
         aud.play().catch((err) => { console.log(err); });
     } else if (ball.x > game_Width - wall - ball.radius) {
         ball.x = game_Width - wall - ball.radius;
         ball.dx = -ball.dx;
-        aud.src = "../media/wall.m4a";
+        aud.src = "media/wall.m4a";
         aud.play().catch((err) => { console.log(err); });
     } else if (ball.y < wall + ball.radius) {
         ball.y = wall + ball.radius;
         ball.dy = -ball.dy;
-        aud.src = "../media/wall.m4a";
+        aud.src = "media/wall.m4a";
         aud.play().catch((err) => { console.log(err); });
     }
 
@@ -73,7 +73,7 @@ function updateBall() {
         && ball.y < paddle.y
         && ball.x > paddle.x - paddle.w * 0.5 - ball.radius
         && ball.x < paddle.x + paddle.w * 0.5 + ball.radius) {
-        aud.src = "../media/paddle.m4a";
+        aud.src = "media/paddle.m4a";
         aud.play().catch((err) => { console.log(err); });
         ball.y = paddle.y - paddle.h * 0.5 - ball.radius;
         ball.dy = -ball.dy;
@@ -101,7 +101,7 @@ function ballBricksCollision() {
                     && bk.x + Brick.width > ball.x - ball.radius
                     && ball.y + ball.radius > bk.y
                     && ball.y - ball.radius < bk.y + Brick.height) {
-                    aud.src = "../media/hit brick.wav";
+                    aud.src = " media/hit brick.wav";
                     aud.play().catch((err) => { console.log(err); });
                     if (bk.status > 0)
                         score += bk.status; //if lives = 0 set the score back to 0
