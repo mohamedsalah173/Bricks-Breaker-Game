@@ -117,7 +117,7 @@ function createPower(brick) {
 function drawPower() {
     for (let i = 0; i < powers.length; i++) {
 
-        if (powers[i].y < canv.height && isPause && !powers[i].isCaught) {
+        if (powers[i].y <= canv.height && isPause && !powers[i].isCaught) {
             powers[i].y++;
         }
 
@@ -133,12 +133,8 @@ function drawPower() {
         }
         ctx.closePath()
         catchPower()
-        if (powers[i].isCaught && powers[i].y < canv.height) {
-            // powers[i].y += 500;
-            powers.splice(powers[i], 1)
-        }
-        if (powers[i].y === canv.height) {
-            powers.splice(powers[i], 1)
+        if ((powers[i].isCaught && powers[i].y < canv.height) || powers[i].y === canv.height) {
+            powers.splice(i, 1)
         }
     }
 }
