@@ -66,6 +66,8 @@ document.getElementById('restart-level').addEventListener('click',()=>{
     document.getElementById('game-over').style.display = 'none';
     createPattern = false;
     lives=3;
+    isPause=true
+    powers=[]
     document.querySelector('.lives span').innerHTML = lives
     newGame();
 })

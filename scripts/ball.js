@@ -107,9 +107,11 @@ function ballBricksCollision() {
                         score += bk.status; //if lives = 0 set the score back to 0
 
                     //high score
+                    highScore = localStorage.getItem("highScore", highScore)
                     if (score > highScore) {
                         highScore = score
                         localStorage.setItem("highScore", highScore)
+                        document.querySelector('.high-score span').innerHTML = highScore
                     }
                     document.querySelector('.score span').innerHTML = score
 

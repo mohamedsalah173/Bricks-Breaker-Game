@@ -40,6 +40,7 @@ function outOfBounds() {
     if (lives === 0 ) {
         document.getElementById('game-over').style.display='flex';
         score=0;
+        isPause=false
         document.querySelector('.score span').innerHTML = score
     }
 }
