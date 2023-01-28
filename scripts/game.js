@@ -87,6 +87,9 @@ function gameLoop() {
     }
 
     if(switchLevel){
+        aud.src = "media/success-fanfare-trumpets-6185.mp3"
+        aud.play();
+        
         if(level==MAX_LEVEl)
         document.getElementById('next-level').style.display='none';
         document.getElementById('up-level').style.display='flex';

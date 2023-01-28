@@ -63,7 +63,7 @@ function returnMenu(){
     level = 1;
     document.getElementById('game-over').style.display = 'none';
     document.getElementById('up-level').style.display = 'none';
-    document.getElementById('next-level').style.display='static';
+    document.getElementById('next-level').style.display='inline-block';
     document.getElementById('menu').style.display = 'flex';
     section.style.visibility = 'hidden'
     document.querySelector('canvas').style.display = 'none'
@@ -108,6 +108,8 @@ document.getElementById('exit-help').addEventListener('click',()=>{
     document.getElementById('help-menu').style.display = 'none';
 })
 document.getElementById('next-level').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('up-level').style.display = 'none';
     createPattern = false;
     isPause = true
