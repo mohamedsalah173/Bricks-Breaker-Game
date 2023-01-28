@@ -53,9 +53,26 @@ function createBricks(arr) {
         }
     }
 
-    for (let i = 0; i < 20; i++) { //create powers random
-        brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'life'
-        brickArr[Math.floor(Math.random() * 6)][Math.floor(Math.random() * 16)].power = 'paddle'
+    let countPowers = 0;
+    while (countPowers < 5) { //create powers random
+        let r1 = Math.floor(Math.random() * 6);
+        let c1 = Math.floor(Math.random() * 16)
+        let r2 = Math.floor(Math.random() * 6);
+        let c2 = Math.floor(Math.random() * 16)
+        if (brickArr[r1][c1].status > 0 && brickArr[r1][c1].power === '') {
+            brickArr[r1][c1].power = 'life';
+            countPowers++;
+        } else {
+            r1 = Math.floor(Math.random() * 6);
+            c1 = Math.floor(Math.random() * 16)
+        }
+        if (brickArr[r2][c2].status > 0 && brickArr[r2][c2].power === '') {
+            brickArr[r2][c2].power = 'paddle';
+            countPowers++;
+        } else {
+            r2 = Math.floor(Math.random() * 6);
+            c2 = Math.floor(Math.random() * 16)
+        }
     }
     switchLevel = false;
     createPattern = true
