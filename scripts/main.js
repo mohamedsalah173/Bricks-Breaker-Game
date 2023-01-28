@@ -82,6 +82,8 @@ document.getElementById('start').addEventListener('click', () => {
     document.getElementById('menu').style.display = 'none';
     section.style.visibility = 'visible'
     document.querySelector('canvas').style.display = 'block'
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
 
 })
 
@@ -92,10 +94,13 @@ document.getElementById('restart-level').addEventListener('click', () => {
     document.getElementById('game-over').style.display = 'none';
     createPattern = false;
     lives = 3;
-    isPause = true
+    // isPause = true
     powers = []
     document.querySelector('.lives span').innerHTML = lives
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
     newGame();
+
 })
 
 document.getElementById('return-menu').addEventListener('click', returnMenu);
@@ -114,9 +119,11 @@ document.getElementById('next-level').addEventListener('click', () => {
     aud.play();
     document.getElementById('up-level').style.display = 'none';
     createPattern = false;
-    isPause = true
+    // isPause = true
     powers = []
     document.querySelector('.lives span').innerHTML = lives
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
     newGame();
 })
 

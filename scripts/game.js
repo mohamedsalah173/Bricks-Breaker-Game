@@ -48,9 +48,14 @@ function outOfBounds() {
         aud.src = "media/gameOver.wav";
         aud.play().catch((err) => { console.log(err); });
         score = 0;
-        isPause = false
+        powers = [];
+        // isPause = false
         document.querySelector('.score span').innerHTML = score
+        document.removeEventListener("keydown", keyDown);
+        document.removeEventListener("keyup", keyUp);
+
     }
+
 }
 
 
@@ -94,12 +99,14 @@ function gameLoop() {
             document.getElementById('next-level').style.display = 'none';
         document.getElementById('up-level').style.display = 'flex';
         document.querySelector('#up-level h1').textContent = `Congrats You Passed Level ${level}`;
-        isPause = false;
+        // isPause = false;
         level++;
         powers = []
         //display level
         document.querySelector('.level span').innerHTML = level;
         createPattern = false;
+        document.removeEventListener("keydown", keyDown);
+        document.removeEventListener("keyup", keyUp);
     }
     if (isPause === true) {
 
