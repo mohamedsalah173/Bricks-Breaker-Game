@@ -1,3 +1,5 @@
+const MAX_LEVEl=3;
+
 // for resposive
 window.addEventListener("resize", newGame);
 let isPause = true;
@@ -15,6 +17,10 @@ document.addEventListener("keydown",(e)=>{
 //         ctx.textAlign = "center";
 //         drawPasue();
 // }
+
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+//  }
 
 // game variables
 
@@ -49,34 +55,41 @@ function outOfBounds() {
 function gameLoop() {
     // update
     // makeSomeNoise();
+
+
+    drawBackground();
+    drawWalls();
+
     if(!createPattern) {
         switch (level) {
             case 1:
+                BALL_SPD=0.006;
                 createBricks(level1);
                 break;
             case 2:
+                BALL_SPD=1.2*BALL_SPD;
                 newGame();
                 createBricks(level2);
-                // setTimeout(()=>{
-                    
-                //     ctx.fillStyle= "red";
-                //     ctx.font = "italic bold 35pt Tahoma";
-                //     ctx.fillText("UP LEVEL",30,80);
-                //     },10000);
                 break;
             case 3:
+                BALL_SPD=1.2*BALL_SPD;
                 newGame();
                 createBricks(level3);
                 break;
             default:
-                console.log("you won ");
-                
+                isPause=false;
                 break;
         }
+
         
     }
 
     if(switchLevel){
+        if(level==MAX_LEVEl)
+        document.getElementById('next-level').style.display='none';
+        document.getElementById('up-level').style.display='flex';
+        document.querySelector('#up-level h1').textContent = `Congrats You Passed Level ${level}`;
+        isPause=false;
         level++;
         powers = []
         //display level
@@ -89,8 +102,7 @@ function gameLoop() {
         updateBall();
     }
     // draw
-    drawBackground();
-    drawWalls();
+    
     drawPaddle();
     drawBall();
     drawBricks()

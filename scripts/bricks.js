@@ -143,7 +143,7 @@ function catchPower() {
     let end_x = paddle.x + (paddle.w / 2)
     for (var i = 0; i < powers.length; i++) {
         if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y + 10 === Math.ceil(paddle.y) && !powers[i].isCaught) {
-            aud.src = "../media/powerup.m4a";
+            aud.src = "media/powerup.m4a";
             aud.play().catch((err) => { console.log(err); });
             powers[i].isCaught = true;
             if (powers[i].type === 'paddle') {

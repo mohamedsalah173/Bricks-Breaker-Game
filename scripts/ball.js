@@ -1,4 +1,4 @@
-const BALL_SPD = 0.006; // starting ball speed as a fraction of screen height per second
+var BALL_SPD = 0.006; // starting ball speed as a fraction of screen height per second
 const BALL_SPIN = 0.5; // ball deflection off the paddle (0 = no spin, 1 = high spin)
 const COLOR_BALL = "white";
 function Ball() {

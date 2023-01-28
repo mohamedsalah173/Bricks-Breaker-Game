@@ -7,7 +7,7 @@ body {
 *{
     box-sizing: border-box;
 }
-#menu , #game-over{
+#menu ,#up-level, #game-over,#help-menu,#about-us{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@ body {
 #menu h1 span{
     font-size: 5rem;
 }
-.start-menu , .score-menu ,.gameOver-menu div{
+.start-menu , .score-menu,.upLevel-menu div ,.gameOver-menu div{
     cursor: pointer;
     font-size: 2rem;
     font-weight: 900;
@@ -43,7 +43,7 @@ body {
     margin-bottom: 1rem;
     border: 2px solid rgb(38, 38, 80);
 }
-.start-menu:hover , .score-menu:hover,.gameOver-menu div:hover{
+.start-menu:hover , .score-menu:hover,.upLevel-menu div:hover,.gameOver-menu div:hover{
     background-color: rgb(38, 38, 80);
 }
 /* canvas{
@@ -65,7 +65,7 @@ background-color: #000;
     
 }
 
-#game-over{
+#up-level,#game-over{
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -85,6 +85,75 @@ background-color: #000;
     margin: 1rem 0;
     font-weight: 200;
 }
-.gameOver-menu div{
+
+#up-level h1{
+    font-size: 3rem;
+    background: linear-gradient(
+        to right, #f32170, #ff6b08,
+         #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    margin: 1rem 0;
+    font-weight: 200;
+}
+.upLevel-menu div,.gameOver-menu div{
     display: inline-block;
+}
+
+#about-us,#help-menu{
+    display: none;
+}
+
+.insturctions>span{
+    font-size: 2rem;
+    color: rgb(203, 203, 203);
+    margin: 1rem 0;
+    font-weight: 200;
+}
+
+#exit-about,#exit-help{
+    font-size: 3rem;
+    left: 1vw;
+    margin: 2vh 32vw 5vh 0;
+    cursor: pointer;
+}
+
+#exit-about:hover,#exit-help:hover{
+    margin: 2vh 35vw 5vh 0;
+}
+
+.instruct-icon{
+    display: inline-block;
+    font-size: 2rem;
+    margin: 3vh 1vw 3vh 20vw;
+}
+
+
+#about-us>p{
+    text-align: center;
+    font-size: large;
+}
+
+
+.team-member{
+    background-color: rgb(22, 20, 20);
+    margin: 2vh 0vw;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+.links{
+    text-decoration: none;
+    color: white;
+    margin: 2vh 5vw;
+}
+
+
+.links:hover{
+    background: linear-gradient(
+        to right, #f32170, #ff6b08,
+         #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }

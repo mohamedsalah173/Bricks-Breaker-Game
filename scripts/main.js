@@ -55,6 +55,23 @@ function drawWalls() {
     ctx.stroke();
 }
 
+function returnMenu(){
+    createPattern = false;
+    lives = 3;
+    level = 1;
+    document.getElementById('game-over').style.display = 'none';
+    document.getElementById('up-level').style.display = 'none';
+    document.getElementById('next-level').style.display='static';
+    document.getElementById('menu').style.display = 'flex';
+    section.style.visibility = 'hidden'
+    document.querySelector('canvas').style.display = 'none'
+    document.querySelector('.level span').innerHTML = level;
+
+    isPause = true
+    powers = []
+    document.querySelector('.lives span').innerHTML = lives
+}
+
 setDimensions();
 
 document.getElementById('start').addEventListener('click', () => {
@@ -72,18 +89,38 @@ document.getElementById('restart-level').addEventListener('click', () => {
     document.querySelector('.lives span').innerHTML = lives
     newGame();
 })
-document.getElementById('return-menu').addEventListener('click', () => {
 
-    createPattern = false;
-    lives = 3;
-    level = 1;
-    document.getElementById('game-over').style.display = 'none';
+document.getElementById('return-menu').addEventListener('click',returnMenu);
+
+document.getElementById('return-menu-level').addEventListener('click', returnMenu);
+
+
+document.getElementById('exit-help').addEventListener('click',()=>{
     document.getElementById('menu').style.display = 'flex';
-    section.style.visibility = 'hidden'
-    document.querySelector('canvas').style.display = 'none'
-    document.querySelector('.level span').innerHTML = level;
-
+    document.getElementById('help-menu').style.display = 'none';
+})
+document.getElementById('next-level').addEventListener('click', () => {
+    document.getElementById('up-level').style.display = 'none';
+    createPattern = false;
     isPause = true
     powers = []
     document.querySelector('.lives span').innerHTML = lives
+    newGame();
+})
+
+
+document.getElementById('help').addEventListener('click', () => {
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('help-menu').style.display = 'flex';
+})
+
+
+document.getElementById('about').addEventListener('click', () => {
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('about-us').style.display = 'flex';
+})
+
+document.getElementById('exit-about').addEventListener('click',()=>{
+    document.getElementById('menu').style.display = 'flex';
+    document.getElementById('about-us').style.display = 'none';
 })
