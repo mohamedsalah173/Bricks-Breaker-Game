@@ -62,16 +62,10 @@ function createBricks(arr) {
         if (brickArr[r1][c1].status > 0 && brickArr[r1][c1].power === '') {
             brickArr[r1][c1].power = 'life';
             countPowers++;
-        } else {
-            r1 = Math.floor(Math.random() * 6);
-            c1 = Math.floor(Math.random() * 16)
         }
         if (brickArr[r2][c2].status > 0 && brickArr[r2][c2].power === '') {
             brickArr[r2][c2].power = 'paddle';
             countPowers++;
-        } else {
-            r2 = Math.floor(Math.random() * 6);
-            c2 = Math.floor(Math.random() * 16)
         }
     }
     switchLevel = false;

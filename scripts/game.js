@@ -1,4 +1,4 @@
-const MAX_LEVEl=3;
+const MAX_LEVEl = 3;
 
 // for resposive
 window.addEventListener("resize", newGame);
@@ -62,39 +62,39 @@ function gameLoop() {
     drawBackground();
     drawWalls();
 
-    if(!createPattern) {
+    if (!createPattern) {
         switch (level) {
             case 1:
-                BALL_SPD=0.006;
+                BALL_SPD = 0.005;
                 createBricks(level1);
                 break;
             case 2:
-                BALL_SPD=1.2*BALL_SPD;
+                BALL_SPD = 0.007;
                 newGame();
                 createBricks(level2);
                 break;
             case 3:
-                BALL_SPD=1.2*BALL_SPD;
+                BALL_SPD = 0.009;
                 newGame();
                 createBricks(level3);
                 break;
             default:
-                isPause=false;
+                isPause = false;
                 break;
         }
 
-        
+
     }
 
-    if(switchLevel){
+    if (switchLevel) {
         aud.src = "media/success-fanfare-trumpets-6185.mp3"
         aud.play();
-        
-        if(level==MAX_LEVEl)
-        document.getElementById('next-level').style.display='none';
-        document.getElementById('up-level').style.display='flex';
+
+        if (level == MAX_LEVEl)
+            document.getElementById('next-level').style.display = 'none';
+        document.getElementById('up-level').style.display = 'flex';
         document.querySelector('#up-level h1').textContent = `Congrats You Passed Level ${level}`;
-        isPause=false;
+        isPause = false;
         level++;
         powers = []
         //display level
@@ -107,7 +107,7 @@ function gameLoop() {
         updateBall();
     }
     // draw
-    
+
     drawPaddle();
     drawBall();
     drawBricks()

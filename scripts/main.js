@@ -57,13 +57,13 @@ function drawWalls() {
     ctx.stroke();
 }
 
-function returnMenu(){
+function returnMenu() {
     createPattern = false;
     lives = 3;
     level = 1;
     document.getElementById('game-over').style.display = 'none';
     document.getElementById('up-level').style.display = 'none';
-    document.getElementById('next-level').style.display='inline-block';
+    document.getElementById('next-level').style.display = 'inline-block';
     document.getElementById('menu').style.display = 'flex';
     section.style.visibility = 'hidden'
     document.querySelector('canvas').style.display = 'none'
@@ -98,12 +98,14 @@ document.getElementById('restart-level').addEventListener('click', () => {
     newGame();
 })
 
-document.getElementById('return-menu').addEventListener('click',returnMenu);
+document.getElementById('return-menu').addEventListener('click', returnMenu);
 
 document.getElementById('return-menu-level').addEventListener('click', returnMenu);
 
 
-document.getElementById('exit-help').addEventListener('click',()=>{
+document.getElementById('exit-help').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('menu').style.display = 'flex';
     document.getElementById('help-menu').style.display = 'none';
 })
@@ -120,17 +122,23 @@ document.getElementById('next-level').addEventListener('click', () => {
 
 
 document.getElementById('help').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('menu').style.display = 'none';
     document.getElementById('help-menu').style.display = 'flex';
 })
 
 
 document.getElementById('about').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('menu').style.display = 'none';
     document.getElementById('about-us').style.display = 'flex';
 })
 
-document.getElementById('exit-about').addEventListener('click',()=>{
+document.getElementById('exit-about').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('menu').style.display = 'flex';
     document.getElementById('about-us').style.display = 'none';
 })
