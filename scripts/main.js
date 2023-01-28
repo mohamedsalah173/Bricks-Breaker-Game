@@ -10,8 +10,7 @@ section.innerHTML = `
 <div class="high-score">high score <span></span></div>`
 document.body.appendChild(section)
 //create audio diff src
-let aud = document.createElement('AUDIO');
-document.body.appendChild(aud);
+
 
 window.addEventListener("resize", setDimensions);
 // Colors 
@@ -26,6 +25,9 @@ document.body.appendChild(canv);
 //setup the context
 var ctx = canv.getContext("2d");
 document.querySelector('canvas').style.display = 'none'
+
+
+
 
 // dimensions
 var height, game_Width, wall;
@@ -75,12 +77,18 @@ function returnMenu(){
 setDimensions();
 
 document.getElementById('start').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('menu').style.display = 'none';
     section.style.visibility = 'visible'
     document.querySelector('canvas').style.display = 'block'
+
 })
 
+
 document.getElementById('restart-level').addEventListener('click', () => {
+    aud.src = "media/click.wav"
+    aud.play();
     document.getElementById('game-over').style.display = 'none';
     createPattern = false;
     lives = 3;

@@ -3,13 +3,13 @@ const MAX_LEVEl=3;
 // for resposive
 window.addEventListener("resize", newGame);
 let isPause = true;
-document.addEventListener("keydown",(e)=>{
+document.addEventListener("keydown", (e) => {
     // console.log(e);
-    if(e.key==='Escape') {
-        isPause = isPause === true ? false :true;
+    if (e.key === 'Escape') {
+        isPause = isPause === true ? false : true;
         console.log(isPause);
     }
-})  
+})
 // if(isPause) {
 //     ctx.fillStyle = "white";
 //         ctx.font = "200px Arial";
@@ -24,7 +24,7 @@ document.addEventListener("keydown",(e)=>{
 
 // game variables
 
-var level=1;
+var level = 1;
 
 //display level
 document.querySelector('.level span').innerHTML = level;
@@ -43,10 +43,12 @@ function outOfBounds() {
     lives--;
     document.querySelector('.lives span').innerHTML = lives
     newGame();
-    if (lives === 0 ) {
-        document.getElementById('game-over').style.display='flex';
-        score=0;
-        isPause=false
+    if (lives === 0) {
+        document.getElementById('game-over').style.display = 'flex';
+        aud.src = "media/gameOver.wav";
+        aud.play().catch((err) => { console.log(err); });
+        score = 0;
+        isPause = false
         document.querySelector('.score span').innerHTML = score
     }
 }
@@ -94,9 +96,9 @@ function gameLoop() {
         powers = []
         //display level
         document.querySelector('.level span').innerHTML = level;
-        createPattern=false;
+        createPattern = false;
     }
-    if(isPause===true) {
+    if (isPause === true) {
 
         updatePaddle();
         updateBall();
@@ -106,7 +108,7 @@ function gameLoop() {
     drawPaddle();
     drawBall();
     drawBricks()
-    ballBricksCollision ();
+    ballBricksCollision();
     drawPower()
     // call the next loop
     requestAnimationFrame(gameLoop);
