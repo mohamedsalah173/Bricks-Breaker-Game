@@ -2,12 +2,17 @@ body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
-    background-image: url(img/1.jpg);
+    background-image: url(img/Pi-Slices.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-*{
+
+* {
     box-sizing: border-box;
 }
-#menu , #game-over{
+
+#menu,
+#game-over {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,13 +29,18 @@ body {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
-#menu h1{
+
+#menu h1 {
     font-size: 4rem;
 }
-#menu h1 span{
+
+#menu h1 span {
     font-size: 5rem;
 }
-.start-menu , .score-menu ,.gameOver-menu div{
+
+.start-menu,
+.score-menu,
+.gameOver-menu div {
     cursor: pointer;
     font-size: 2rem;
     font-weight: 900;
@@ -43,29 +53,34 @@ body {
     margin-bottom: 1rem;
     border: 2px solid rgb(38, 38, 80);
 }
-.start-menu:hover , .score-menu:hover,.gameOver-menu div:hover{
+
+.start-menu:hover,
+.score-menu:hover,
+.gameOver-menu div:hover {
     background-color: rgb(38, 38, 80);
 }
+
 /* canvas{
     display: block;
 } */
 
-.dashboard{
+.dashboard {
     display: flex;
     visibility: hidden;
     justify-content: space-between;
     align-items: center;
     color: white;
-box-sizing: border-box;
-background-color: #000;
-}
-.dashboard div{
-    font-size: 2rem;
-    padding: 2rem;
-    
+    box-sizing: border-box;
+    background-color: #000;
 }
 
-#game-over{
+.dashboard div {
+    font-size: 2rem;
+    padding: 2rem;
+
+}
+
+#game-over {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -79,12 +94,14 @@ background-color: #000;
     -ms-border-radius: 0;
     -o-border-radius: 0;
 }
-#game-over h1{
+
+#game-over h1 {
     font-size: 10rem;
     color: rgb(203, 203, 203);
     margin: 1rem 0;
     font-weight: 200;
 }
-.gameOver-menu div{
+
+.gameOver-menu div {
     display: inline-block;
 }

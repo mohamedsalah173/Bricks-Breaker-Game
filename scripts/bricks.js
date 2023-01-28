@@ -20,12 +20,12 @@ const level2 = [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     , [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 ];
 
-const level3 = [[0, 3, 3, 0, 0, 0, -1, 3, 3, 0, 0, 0, -1, 3, 0, 0],
-[0, 0, 0, 3, 3, 0, 0, 0, 0, 3, 3, 0, 0, 0, 2, 0]
-    , [0, 0, 0, 0, -1, 2, 0, 0, 0, 0, -1, 2, 0, 0, -1, 2]
-    , [0, 0, 0, 0, -1, 2, 0, 0, 0, 0, -1, 2, 0, 0, -1, 2],
-[0, 0, 0, 3, 3, 0, 0, 0, 0, 3, 3, 0, 0, 0, 2, 0]
-    , [0, 3, 3, 0, 0, 0, -1, 3, 3, 0, 0, 0, -1, 3, 0, 0]];
+const level3 = [[0, 0, 3, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 3, 0, 0],
+[0, 3, -1, 3, 0, 0, 0, 2, 2, 0, 0, 0, 3, -1, 3, 0]
+    , [0, 0, 3, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 3, 0, 0]
+    , [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    , [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]];
 class Brick {
     static cols = 16;
     static rows = 6;
@@ -143,7 +143,7 @@ function catchPower() {
     let end_x = paddle.x + (paddle.w / 2)
     for (var i = 0; i < powers.length; i++) {
         if (powers[i].x > begin_x && powers[i].x < end_x && powers[i].y + 10 === Math.ceil(paddle.y) && !powers[i].isCaught) {
-            aud.src = "../media/powerup.m4a";
+            aud.src = "media/gain power.wav";
             aud.play().catch((err) => { console.log(err); });
             powers[i].isCaught = true;
             if (powers[i].type === 'paddle') {
