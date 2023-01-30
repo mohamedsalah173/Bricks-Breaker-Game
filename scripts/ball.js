@@ -144,6 +144,8 @@ function ballBricksCollision() {
                         }
                         else if (bk.status === -1) {
                             balls[i].dy = -balls[i].dy
+                            balls[i].dx = -balls[i].dx
+                            balls[i].dz = -balls[i].dz
                         }
                     }
                 }
