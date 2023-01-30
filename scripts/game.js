@@ -18,9 +18,6 @@ document.addEventListener("keydown", (e) => {
 //         drawPasue();
 // }
 
-// function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-//  }
 
 // game variables
 
@@ -34,13 +31,15 @@ function newGame() {
     // level=1;
     setDimensions();
     paddle = new Paddle();
-    ball = new Ball();
+    // ball = new Ball();
+    balls = [new Ball()];
 }
 
 var lives = 3;
 function outOfBounds() {
     // TODO out of bounds
     lives--;
+    powers = [];
     document.querySelector('.lives span').innerHTML = lives
     newGame();
     if (lives === 0) {
@@ -48,7 +47,7 @@ function outOfBounds() {
         aud.src = "media/gameOver.wav";
         aud.play().catch((err) => { console.log(err); });
         score = 0;
-        powers = [];
+        
         // isPause = false
         document.querySelector('.score span').innerHTML = score
         document.removeEventListener("keydown", keyDown);
@@ -64,8 +63,7 @@ function gameLoop() {
     // makeSomeNoise();
 
 
-    drawBackground();
-    drawWalls();
+    
 
     if (!createPattern) {
         switch (level) {
@@ -84,6 +82,7 @@ function gameLoop() {
                 createBricks(level3);
                 break;
             default:
+                switchLevel=false;
                 isPause = false;
                 break;
         }
@@ -115,6 +114,8 @@ function gameLoop() {
     }
     // draw
 
+    drawBackground();
+    drawWalls();
     drawPaddle();
     drawBall();
     drawBricks()
