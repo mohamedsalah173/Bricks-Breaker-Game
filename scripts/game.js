@@ -2,6 +2,7 @@ const MAX_LEVEl = 3;
 
 // for resposive
 window.addEventListener("resize", newGame);
+
 let isPause = true;
 document.addEventListener("keydown", (e) => {
     // console.log(e);

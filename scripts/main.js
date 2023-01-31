@@ -2,11 +2,11 @@
 var section = document.createElement('section')
 section.classList.add('dashboard')
 section.innerHTML = `
-<div class="pause">Esc to pause</div>
+<div class="pause"><i class="fa-sharp fa-solid fa-pause" style="color="white""></i> ESC</div>
 <div class="sound"><i id="icon" class='fa fa-music'></i></div>
-<div class="level">Level <span></span></div>
-<div class="score">score <span>0</span></div>
-<div class="lives">lives <span>3</span></div>
+<div class="level"> <span> </span> <i class="fa-sharp fa-solid fa-flag-checkered"></i></div>
+<div class="score"><i class="fa-sharp fa-solid fa-coins"></i><span> 0</span></div>
+<div class="lives"><i class="fa-solid fa-heart"></i><span> 3</span></div>
 <div class="high-score">high score <span></span></div>`
 document.body.appendChild(section)
 //create audio diff src
