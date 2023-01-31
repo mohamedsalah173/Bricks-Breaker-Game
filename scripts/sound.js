@@ -19,11 +19,11 @@ backgroundSoundIcon.addEventListener("click", (e) => {
     }
 })
 
-/* function makeSomeNoise() {
+function makeSomeNoise() {
     backgroundSound.play();
 }
 console.log(backgroundSoundIcon)
- */
+
 // sounds src
 let aud = document.createElement('AUDIO');
 document.body.appendChild(aud);
