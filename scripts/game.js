@@ -47,7 +47,7 @@ function outOfBounds() {
         aud.src = "media/gameOver.wav";
         aud.play().catch((err) => { console.log(err); });
         score = 0;
-        
+
         // isPause = false
         document.querySelector('.score span').innerHTML = score
         document.removeEventListener("keydown", keyDown);
@@ -63,7 +63,7 @@ function gameLoop() {
     // makeSomeNoise();
 
 
-    
+
 
     if (!createPattern) {
         switch (level) {
@@ -82,7 +82,7 @@ function gameLoop() {
                 createBricks(level3);
                 break;
             default:
-                switchLevel=false;
+                switchLevel = false;
                 isPause = false;
                 break;
         }

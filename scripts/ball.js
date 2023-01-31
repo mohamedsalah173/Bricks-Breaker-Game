@@ -36,11 +36,11 @@ function serve() {
 
     // random angle, between 45 and 135 degrees
     let angle = Math.random() * Math.PI / 2 + Math.PI / 4;
-    applyBallSpeed(angle,0);
+    applyBallSpeed(angle, 0);
     return true;
 }
 
-function applyBallSpeed(angle,i) {
+function applyBallSpeed(angle, i) {
 
     // keep the angle between 30 and 150 degrees
     if (angle < Math.PI / 6) {
@@ -92,14 +92,14 @@ function updateBall() {
             // modify the angle based off ball spin
             let angle = Math.atan2(-balls[i].dy, balls[i].dx);
             angle += (Math.random() * Math.PI / 2 - Math.PI / 4) * BALL_SPIN;
-            applyBallSpeed(angle,i);
+            applyBallSpeed(angle, i);
         }
 
         // handle out of bounds
         if (balls[i].y > height) {
-            balls.splice(i,1);
-            if(balls.length==0)
-            outOfBounds();
+            balls.splice(i, 1);
+            if (balls.length == 0)
+                outOfBounds();
         }
     }
 }

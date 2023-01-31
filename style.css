@@ -10,7 +10,12 @@ body {
 * {
     box-sizing: border-box;
 }
-#menu ,#up-level, #game-over,#help-menu,#about-us{
+
+#menu,
+#up-level,
+#game-over,
+#help-menu,
+#about-us {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +40,10 @@ body {
 #menu h1 span {
     font-size: 5rem;
 }
-.start-menu ,.upLevel-menu div ,.gameOver-menu div{
+
+.start-menu,
+.upLevel-menu div,
+.gameOver-menu div {
     cursor: pointer;
     font-size: 2rem;
     font-weight: 900;
@@ -48,7 +56,10 @@ body {
     margin-bottom: 1rem;
     border: 2px solid rgb(38, 38, 80);
 }
-.start-menu:hover ,.upLevel-menu div:hover,.gameOver-menu div:hover{
+
+.start-menu:hover,
+.upLevel-menu div:hover,
+.gameOver-menu div:hover {
     background-color: rgb(38, 38, 80);
 }
 
@@ -66,14 +77,16 @@ body {
     background-color: #000;
 }
 
-#up-level,#game-over,
+#up-level,
+#game-over,
 .dashboard div {
     font-size: 2rem;
     padding: 2rem;
 
 }
 
-#game-over,#up-level {
+#game-over,
+#up-level {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -97,58 +110,62 @@ body {
 
 
 
-#up-level h1{
+#up-level h1 {
     font-size: 3rem;
-    background: linear-gradient(
-        to right, #f32170, #ff6b08,
-         #cf23cf, #eedd44);
+    background: linear-gradient(to right, #f32170, #ff6b08,
+            #cf23cf, #eedd44);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     margin: 1rem 0;
     font-weight: 200;
 }
-.upLevel-menu div,.gameOver-menu div,
+
+.upLevel-menu div,
+.gameOver-menu div,
 .gameOver-menu div {
     display: inline-block;
 }
 
-#about-us,#help-menu{
+#about-us,
+#help-menu {
     display: none;
 }
 
-.insturctions>span{
+.insturctions>span {
     font-size: 2rem;
     color: rgb(203, 203, 203);
     margin: 1rem 0;
     font-weight: 200;
 }
 
-#exit-about,#exit-help{
+#exit-about,
+#exit-help {
     font-size: 3rem;
     left: 1vw;
     margin: 2vh 32vw 5vh 0;
     cursor: pointer;
 }
 
-#exit-about:hover,#exit-help:hover{
+#exit-about:hover,
+#exit-help:hover {
     margin: 2vh 35vw 5vh 0;
 }
 
-.instruct-icon{
+.instruct-icon {
     display: inline-block;
     font-size: 2rem;
     margin: 3vh 1vw 3vh 20vw;
 }
 
 
-#about-us>p{
+#about-us>p {
     text-align: center;
     font-size: large;
     font-weight: 400;
 }
 
 
-.team-member{
+.team-member {
     background-color: rgb(22, 20, 20);
     margin: 2vh 0vw;
     padding: 10px;
@@ -156,22 +173,48 @@ body {
 }
 
 
-.links{
+.links {
     text-decoration: none;
     color: white;
     margin: 2vh 5vw;
-    background: linear-gradient(
-        to left, #f32170, #ff6b08,
-         #cf23cf, #eedd44);
+    background: linear-gradient(to left, #f32170, #ff6b08,
+            #cf23cf, #eedd44);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
 
 
-.links:hover{
-    background: linear-gradient(
-        to right, #f32170, #ff6b08,
-         #cf23cf, #eedd44);
-         -webkit-text-fill-color: transparent;
+.links:hover {
+    background: linear-gradient(to right, #f32170, #ff6b08,
+            #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+}
+
+#startshow {
+    top: 20vw;
+    left: 45vw;
+    direction: ltr;
+    position: absolute;
+    font-size: 4vw;
+    background: linear-gradient(to right, #f32170,
+            #ff6b08, #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    animation-name: Three;
+    animation-duration: 5s;
+}
+
+@keyframes Three {
+    50% {
+        transform: scale(3);
+    }
+
+    75% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

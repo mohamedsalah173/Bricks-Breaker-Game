@@ -77,11 +77,14 @@ function returnMenu() {
 setDimensions();
 
 document.getElementById('start').addEventListener('click', () => {
+
+    timeout();
+
     aud.src = "media/click.wav"
     aud.play();
     document.getElementById('menu').style.display = 'none';
     section.style.visibility = 'visible'
-    document.querySelector('canvas').style.display = 'block'
+    document.querySelector('canvas').style.display = 'none'
     document.addEventListener("keydown", keyDown);
     document.addEventListener("keyup", keyUp);
 
@@ -149,3 +152,40 @@ document.getElementById('exit-about').addEventListener('click', () => {
     document.getElementById('menu').style.display = 'flex';
     document.getElementById('about-us').style.display = 'none';
 })
+
+
+
+const startShowDiv = document.getElementById("startshow")
+function timeout() {
+    isPause = false
+    startShowDiv.style.display = 'flex';
+    startShowDiv.textContent = 'Ready!';
+    setTimeout(myGreeting3, 1000);
+
+}
+
+
+function myGreeting3() {
+
+    startShowDiv.textContent = "Steady!";
+    const myTimeout2 = () => {
+        setTimeout(myGreeting2, 1000);
+    };
+    myTimeout2();
+}
+
+function myGreeting2() {
+    startShowDiv.textContent = "Go!";
+    const myTimeout1 = () => {
+        setTimeout(myGreeting1, 1000);
+    };
+    myTimeout1();
+}
+
+function myGreeting1() {
+    startShowDiv.style.display = "none";
+    isPause = true
+    document.querySelector('canvas').style.display = 'block'
+
+
+}
