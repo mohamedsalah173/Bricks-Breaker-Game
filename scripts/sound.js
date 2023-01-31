@@ -27,3 +27,14 @@ console.log(backgroundSoundIcon)
 // sounds src
 let aud = document.createElement('AUDIO');
 document.body.appendChild(aud);
+
+aud.muted=false;
+document.getElementById('mute').addEventListener('click',()=>{
+    document.getElementById('mute').classList.toggle('fa-volume-high');
+    document.getElementById('mute').classList.toggle('fa-volume-xmark');
+    if (!aud.muted) {
+        aud.muted = true;
+    }else{
+        aud.muted = false
+    }
+})

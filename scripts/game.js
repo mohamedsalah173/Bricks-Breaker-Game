@@ -40,10 +40,10 @@ var lives = 3;
 function outOfBounds() {
     // TODO out of bounds
     lives--;
-    powers = [];
     document.querySelector('.lives span').innerHTML = lives
     newGame();
     if (lives === 0) {
+        powers = [];
         document.getElementById('game-over').style.display = 'flex';
         aud.src = "media/gameOver.wav";
         aud.play().catch((err) => { console.log(err); });
@@ -62,11 +62,8 @@ function outOfBounds() {
 function gameLoop() {
     // update
     // makeSomeNoise();
-
-
-
-
     if (!createPattern) {
+        bricksHit=0;
         switch (level) {
             case 1:
                 BALL_SPD = 0.005;

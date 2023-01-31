@@ -105,6 +105,7 @@ function updateBall() {
 }
 var score = 0;
 var highScore = score
+var bricksHit =0;
 function ballBricksCollision() {
     for (i = 0; i < balls.length; i++) {
         for (let row = 0; row < Brick.rows; row++) {
@@ -118,9 +119,13 @@ function ballBricksCollision() {
                         && balls[i].y - balls[i].radius < bk.y + Brick.height) {
                         aud.src = " media/hit brick.wav";
                         aud.play().catch((err) => { console.log(err); });
-                        if (bk.status > 0)
-                            score += bk.status; //if lives = 0 set the score back to 0
-
+                        if (bk.status > 0) {
+                            score += bk.status; //score based on the bricks' status
+                            bricksHit++;
+                        }
+                        if (bricksHit === 5) { 
+                            assignPowers(); //assign powers to bricks after 5 bricks are hit
+                        }
                         //high score
                         highScore = localStorage.getItem("highScore", highScore)
                         if (score > highScore) {

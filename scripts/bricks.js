@@ -52,28 +52,6 @@ function createBricks(arr) {
             brickArr[row][c] = new Brick(x, y, arr[row][c]);
         }
     }
-
-    let countPowers = 0;
-    while (countPowers < 5) { //create powers random
-        let r1 = Math.floor(Math.random() * 6);
-        let c1 = Math.floor(Math.random() * 16)
-        let r2 = Math.floor(Math.random() * 6);
-        let c2 = Math.floor(Math.random() * 16)
-        let r3 = Math.floor(Math.random() * 6);
-        let c3 = Math.floor(Math.random() * 16)
-        if (brickArr[r1][c1].status > 0 && brickArr[r1][c1].power === '') {
-            brickArr[r1][c1].power = 'life';
-            countPowers++;
-        }
-        if (brickArr[r2][c2].status > 0 && brickArr[r2][c2].power === '') {
-            brickArr[r2][c2].power = 'paddle';
-            countPowers++;
-        }
-        if (brickArr[r3][c3].status > 0 && brickArr[r3][c3].power === '') {
-            brickArr[r3][c3].power = 'ball';
-            countPowers++;
-        }
-    }
     switchLevel = false;
     createPattern = true
 }
@@ -133,7 +111,29 @@ function createPower(brick) {
     }
     powers.push(power)
 }
-
+function assignPowers() {
+    let countPowers = 0;
+    while (countPowers < 5) { //create powers random
+        let r1 = Math.floor(Math.random() * 6);
+        let c1 = Math.floor(Math.random() * 16)
+        let r2 = Math.floor(Math.random() * 6);
+        let c2 = Math.floor(Math.random() * 16)
+        let r3 = Math.floor(Math.random() * 6);
+        let c3 = Math.floor(Math.random() * 16)
+        if (brickArr[r1][c1].status > 0 && brickArr[r1][c1].power === '') {
+            brickArr[r1][c1].power = 'life';
+            countPowers++;
+        }
+        if (brickArr[r2][c2].status > 0 && brickArr[r2][c2].power === '') {
+            brickArr[r2][c2].power = 'paddle';
+            countPowers++;
+        }
+        if (brickArr[r3][c3].status > 0 && brickArr[r3][c3].power === '') {
+            brickArr[r3][c3].power = 'ball';
+            countPowers++;
+        }
+    }
+}
 function drawPower() {
     for (let i = 0; i < powers.length; i++) {
 
@@ -162,16 +162,38 @@ function drawPower() {
     }
 }
 
+function determineY(power) {
+    let begin_y;
+    let end_y;
+    switch (power.type) {
+        case 'paddle':
+            begin_y = paddle.y - paddle.h / 2 - 5;
+            end_y = paddle.y + paddle.h / 2 - 5;
+            break;
+        case 'life':
+            begin_y = paddle.y - 20;
+            end_y = paddle.y;
+            break;
+        case 'ball':
+            begin_y = paddle.y - 20;
+            end_y = paddle.y + 10;
+            break;
+    }
+    if (Math.ceil(power.y) > Math.ceil(begin_y) &&
+        Math.ceil(power.y) < Math.ceil(end_y)) {
+        return true
+    } else {
+        return false;
+    }
+}
 function catchPower() {
     let begin_x = paddle.x - (paddle.w / 2)
     let end_x = paddle.x + (paddle.w / 2)
-    let begin_y = paddle.y - paddle.h / 2;
-    let end_y = paddle.y + paddle.h / 2;
+
     for (var i = 0; i < powers.length; i++) {
         if (powers[i].x > begin_x &&
             powers[i].x < end_x &&
-            Math.ceil(powers[i].y) > Math.ceil(begin_y) &&
-            Math.ceil(powers[i].y) < Math.ceil(end_y) &&
+            determineY(powers[i]) &&
             !powers[i].isCaught) {
             aud.src = "media/gain power.wav";
             aud.play().catch((err) => { console.log(err); });
@@ -193,7 +215,7 @@ var id;
 function powerPaddle() {
     paddle.w = 0.2 * game_Width
     id = setTimeout(() => { paddle.w = 0.1 * game_Width }, 10000)
- }
+}
 
 function powerLife() {
     console.log('life');
@@ -263,15 +285,15 @@ function drawHeart(power) {
 }
 
 function powerBall() {
-    for (let index = 0; index < 3; index++) {
-        let currentBall=balls[0];
+    for (let index = 0; index < 2; index++) {
+        let currentBall = balls[0];
         // currentBall = balls[balls.length+index];
         let NewBall = new Ball();
         NewBall.y = currentBall.y;
         NewBall.x = currentBall.x;
-        NewBall.spd=currentBall.spd;
-        NewBall.dx = Math.ceil(Math.random()*7);
-        NewBall.dy = -Math.ceil(Math.random()*7);
+        NewBall.spd = currentBall.spd;
+        NewBall.dx = Math.ceil(Math.random() * 7);
+        NewBall.dy = -Math.ceil(Math.random() * 7);
         balls.push(NewBall);
     }
 }

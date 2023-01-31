@@ -3,8 +3,8 @@ var section = document.createElement('section')
 section.classList.add('dashboard')
 section.innerHTML = `
 <div class="pause"><i class="fa-sharp fa-solid fa-pause" style="color="white""></i> ESC</div>
-<div class="sound"><i id="icon" class='fa fa-music'></i></div>
-<div class="level"> <span> </span> <i class="fa-sharp fa-solid fa-flag-checkered"></i></div>
+<div class="sound"><i id='mute' class="fa-solid fa-volume-high"></i> <i id="icon" class='fa fa-music'></i></div>
+<div class="level"><i class="fa-sharp fa-solid fa-flag-checkered"></i> <span> </span></div>
 <div class="score"><i class="fa-sharp fa-solid fa-coins"></i><span> 0</span></div>
 <div class="lives"><i class="fa-solid fa-heart"></i><span> 3</span></div>
 <div class="high-score">high score <span></span></div>`
@@ -59,12 +59,14 @@ function drawWalls() {
 
 function returnMenu() {
     createPattern = false;
+    score=0;
     lives = 3;
     level = 1;
     document.getElementById('game-over').style.display = 'none';
     document.getElementById('up-level').style.display = 'none';
     document.getElementById('next-level').style.display = 'inline-block';
     document.getElementById('menu').style.display = 'flex';
+    document.querySelector('.score span').innerHTML = score
     section.style.visibility = 'hidden'
     document.querySelector('canvas').style.display = 'none'
     document.querySelector('.level span').innerHTML = level;

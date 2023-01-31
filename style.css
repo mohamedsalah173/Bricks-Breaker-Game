@@ -40,7 +40,9 @@ body {
 #menu h1 span {
     font-size: 5rem;
 }
-
+.start-menu{
+    width: 330px;
+}
 .start-menu,
 .upLevel-menu div,
 .gameOver-menu div {
@@ -76,7 +78,12 @@ body {
     box-sizing: border-box;
     background-color: #000;
 }
-
+.dashboard i{
+    margin-right: 1rem;
+}
+#mute, #icon{
+    cursor: pointer;
+}
 #up-level,
 #game-over,
 .dashboard div {
