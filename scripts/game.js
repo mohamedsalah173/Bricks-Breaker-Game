@@ -18,7 +18,7 @@ var level = 1;
 //display level
 document.querySelector('.level span').innerHTML = level;
 
-var ball, paddle;
+var balls, paddle;
 function newGame() {
     // level=1;
     setDimensions();
