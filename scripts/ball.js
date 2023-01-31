@@ -2,20 +2,16 @@ var BALL_SPD = 0.006; // starting ball speed as a fraction of screen height per 
 const BALL_SPIN = 1; // ball deflection off the paddle (0 = no spin, 1 = high spin)
 const COLOR_BALL = "white";
 
-function Ball() {
-    this.radius = wall * 0.75;
-    this.x = paddle.x;
-    this.y = paddle.y - paddle.h / 2 - this.radius;
-    this.spd = BALL_SPD * (height > game_Width ? height : game_Width);
-    this.dx = 0;
-    this.dy = 0;
+class Ball {
+    constructor() {
+        this.radius = wall * 0.75;
+        this.x = paddle.x;
+        this.y = paddle.y - paddle.h / 2 - this.radius;
+        this.spd = BALL_SPD * (height > game_Width ? height : game_Width);
+        this.dx = 0;
+        this.dy = 0;
+    }
 }
-
-
-// class Ball{
-//     static objNum=0;
-
-// }
 
 function drawBall() {
     for (i = 0; i < balls.length; i++) {
@@ -123,8 +119,8 @@ function ballBricksCollision() {
                             score += bk.status; //score based on the bricks' status
                             bricksHit++;
                         }
-                        if (bricksHit === 5) { 
-                            assignPowers(); //assign powers to bricks after 5 bricks are hit
+                        if (bricksHit === 3) { 
+                            assignPowers(); //assign powers to bricks after 3 bricks are hit
                         }
                         //high score
                         highScore = localStorage.getItem("highScore", highScore)

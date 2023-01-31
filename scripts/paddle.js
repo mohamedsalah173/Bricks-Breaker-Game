@@ -1,6 +1,3 @@
-//--------------------------------------------
-// document.addEventListener("keydown", keyDown);
-// document.addEventListener("keyup", keyUp);
 //------------------------------------------
 canv.addEventListener("touchcancel", touchCancel);
 canv.addEventListener("touchend", touchEnd);

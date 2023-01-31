@@ -11,15 +11,6 @@ document.addEventListener("keydown", (e) => {
         console.log(isPause);
     }
 })
-// if(isPause) {
-//     ctx.fillStyle = "white";
-//         ctx.font = "200px Arial";
-//         ctx.fillText("Continue",1 , 1);
-//         ctx.textAlign = "center";
-//         drawPasue();
-// }
-
-
 // game variables
 
 var level = 1;
@@ -41,9 +32,9 @@ function outOfBounds() {
     // TODO out of bounds
     lives--;
     document.querySelector('.lives span').innerHTML = lives
+    powers = [];
     newGame();
     if (lives === 0) {
-        powers = [];
         document.getElementById('game-over').style.display = 'flex';
         aud.src = "media/gameOver.wav";
         aud.play().catch((err) => { console.log(err); });
