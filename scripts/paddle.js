@@ -28,12 +28,10 @@ function drawPaddle() {
     ctx.fillRect(paddle.x - paddle.w * 0.5, paddle.y - paddle.h * 0.5, paddle.w, paddle.h);
 }
 
-
+//---------------- keys movements ------------------ //
 function keyDown(ev) {
     switch (ev.keyCode) {
-        // case 27:
-        //     setFlages();
-        //     break
+
         case 32: // space bar (serve the ball)
             serve();
             break;

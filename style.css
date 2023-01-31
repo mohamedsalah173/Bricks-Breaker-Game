@@ -41,11 +41,12 @@ body {
     font-size: 5rem;
 }
 .start-menu{
-    width: 330px;
+    width: 500px;
 }
 .start-menu,
 .upLevel-menu div,
 .gameOver-menu div {
+    text-align: center;
     cursor: pointer;
     font-size: 2rem;
     font-weight: 900;
@@ -153,11 +154,11 @@ body {
     cursor: pointer;
 }
 
-#exit-about:hover,
+/* #exit-about:hover,
 #exit-help:hover {
     margin: 2vh 35vw 5vh 0;
 }
-
+ */
 .instruct-icon {
     display: inline-block;
     font-size: 2rem;
