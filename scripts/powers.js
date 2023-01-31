@@ -81,9 +81,6 @@ function assignPowers() {
     }
 }
 
-
-
-
 // ------------------ extend paddle power -------------------//
 var id;
 function powerPaddle() {
