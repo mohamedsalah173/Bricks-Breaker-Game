@@ -1,7 +1,5 @@
-var id;
 var power;
 var powers = []
-
 class Power {
     constructor(brick) {
         this.x = brick.x + (Brick.width / 2);
@@ -11,24 +9,7 @@ class Power {
     }
 }
 
-function createPower(brick) {
-    power = new Power(brick);
-    switch (power.type) {
-        case 'paddle':
-            drawLine(power)
-            break;
-        case 'life':
-            drawHeart(power);
-            break;
-        case 'ball':
-            drawPowerBall(power);
-            break;
-        default:
-            break;
-    }
-    powers.push(power)
-}
-
+// ------------------ draw powers-------------------//
 function drawPower() {
     for (let i = 0; i < powers.length; i++) {
 
@@ -56,7 +37,26 @@ function drawPower() {
         }
     }
 }
+// ------------------  create powers-------------------//
 
+function createPower(brick) {
+    power = new Power(brick);
+    switch (power.type) {
+        case 'paddle':
+            drawLine(power)
+            break;
+        case 'life':
+            drawHeart(power);
+            break;
+        case 'ball':
+            drawPowerBall(power);
+            break;
+        default:
+            break;
+    }
+    powers.push(power)
+}
+// ------------------  assign Powers -------------------//
 function assignPowers() {
     let countPowers = 0;
     while (countPowers < 5) { //create powers random
@@ -81,84 +81,27 @@ function assignPowers() {
     }
 }
 
-
-function determineY(power) {
-    let begin_y;
-    let end_y;
-    switch (power.type) {
-        case 'paddle':
-            begin_y = paddle.y - paddle.h / 2 - 5;
-            end_y = paddle.y + paddle.h / 2 - 5;
-            break;
-        case 'life':
-            begin_y = paddle.y - 20;
-            end_y = paddle.y;
-            break;
-        case 'ball':
-            begin_y = paddle.y - 20;
-            end_y = paddle.y + 10;
-            break;
-    }
-    if (Math.ceil(power.y) > Math.ceil(begin_y) &&
-        Math.ceil(power.y) < Math.ceil(end_y)) {
-        return true
-    } else {
-        return false;
-    }
-}
-
-
-function catchPower() {
-    let begin_x = paddle.x - (paddle.w / 2)
-    let end_x = paddle.x + (paddle.w / 2)
-
-    for (var i = 0; i < powers.length; i++) {
-        if (powers[i].x > begin_x &&
-            powers[i].x < end_x &&
-            determineY(powers[i]) &&
-            !powers[i].isCaught) {
-            aud.src = "media/gain power.wav";
-            aud.play().catch((err) => { console.log(err); });
-            powers[i].isCaught = true;
-            if (powers[i].type === 'paddle') {
-                clearTimeout(id);
-                powerPaddle()
-            } else if (powers[i].type === 'life') {
-                powerLife()
-            }
-            else if (powers[i].type === 'ball') {
-                powerBall()
-            }
-        }
-    }
-}
-
+// ------------------ extend paddle power -------------------//
+var id;
 function powerPaddle() {
     paddle.w = 0.2 * game_Width
     id = setTimeout(() => { paddle.w = 0.1 * game_Width }, 10000)
 }
-
-function powerLife() {
-    console.log('life');
-    lives++;
-    document.querySelector('.lives span').innerHTML = lives;
-
-}
-
 function drawLine(power) {
     ctx.beginPath()
     ctx.fillStyle = '#ff0000';
     ctx.fillRect(power.x, power.y, 20, 5);
     ctx.stroke()
 }
+// ------------------ get more life power -------------------//
 
-function drawPowerBall(power) {
-    ctx.beginPath()
-    ctx.fillStyle = '#ff0000';
-    ctx.arc(power.x, power.y, 10, 0, 2 * Math.PI);
-    ctx.fill()
+function powerLife() {
+    console.log('life');
+    lives++;
+    document.querySelector('.lives span').innerHTML = lives;
+    
 }
-
+// draw hearts
 function drawHeart(power) {
 
     var x = power.x;
@@ -204,6 +147,14 @@ function drawHeart(power) {
     ctx.restore();
 
 }
+// ------------------ Balls power -------------------//
+
+function drawPowerBall(power) {
+    ctx.beginPath()
+    ctx.fillStyle = '#ff0000';
+    ctx.arc(power.x, power.y, 10, 0, 2 * Math.PI);
+    ctx.fill()
+}
 
 function powerBall() {
     for (let index = 0; index < 2; index++) {
@@ -216,5 +167,55 @@ function powerBall() {
         NewBall.dx = Math.ceil(Math.random() * 7);
         NewBall.dy = -Math.ceil(Math.random() * 7);
         balls.push(NewBall);
+    }
+}
+
+//-------------------------- catch powers ----------------//
+function determineY(power) {
+    let begin_y;
+    let end_y;
+    switch (power.type) {
+        case 'paddle':
+            begin_y = paddle.y - paddle.h / 2 - 5;
+            end_y = paddle.y + paddle.h / 2 - 5;
+            break;
+        case 'life':
+            begin_y = paddle.y - 20;
+            end_y = paddle.y;
+            break;
+        case 'ball':
+            begin_y = paddle.y - 20;
+            end_y = paddle.y + 10;
+            break;
+    }
+    if (Math.ceil(power.y) > Math.ceil(begin_y) &&
+        Math.ceil(power.y) < Math.ceil(end_y)) {
+        return true
+    } else {
+        return false;
+    }
+}
+function catchPower() {
+    let begin_x = paddle.x - (paddle.w / 2)
+    let end_x = paddle.x + (paddle.w / 2)
+
+    for (var i = 0; i < powers.length; i++) {
+        if (powers[i].x > begin_x &&
+            powers[i].x < end_x &&
+            determineY(powers[i]) &&
+            !powers[i].isCaught) {
+            aud.src = "media/gain power.wav";
+            aud.play().catch((err) => { console.log(err); });
+            powers[i].isCaught = true;
+            if (powers[i].type === 'paddle') {
+                clearTimeout(id);
+                powerPaddle()
+            } else if (powers[i].type === 'life') {
+                powerLife()
+            }
+            else if (powers[i].type === 'ball') {
+                powerBall()
+            }
+        }
     }
 }

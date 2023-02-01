@@ -70,7 +70,6 @@ function gameLoop() {
     drawPaddle();
     drawBall();
     drawBricks()
-    ballBricksCollision();
     drawPower()
     // call the next loop
     requestAnimationFrame(gameLoop);
